@@ -12,7 +12,7 @@ public class MissingRanges {
 	}
 	public static List<String> findMissingRanges(int[] nums, int lower, int upper) {
 		List<String> rst = new ArrayList<String>();
-        for(int num: nums) {
+            for(int num: nums) {
         	if(num - lower == 1) {
         		rst.add(String.valueOf(lower));
         	}
@@ -20,13 +20,13 @@ public class MissingRanges {
         		rst.add(lower + "->" + (num - 1));
         	}
         	lower = num + 1;
-        }
-        if(upper == lower) {
+            }
+            if(upper == lower) {
         	rst.add(String.valueOf(upper));
-        }
-        else if(upper > lower) {
+            }
+            else if(upper > lower) {
         	rst.add(lower + "->" + (upper));
-        }
+            }
         return rst;
     }
 }
