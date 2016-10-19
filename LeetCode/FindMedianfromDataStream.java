@@ -17,6 +17,7 @@ public class FindMedianfromDataStream {
 		mf.addNum(-5);
 		System.out.println(mf.findMedian());
 	}
+	
 	private static class MedianFinder {
 		public PriorityQueue<Integer> minHeap, maxHeap;
 		public MedianFinder() {
@@ -40,5 +41,5 @@ public class FindMedianfromDataStream {
 	        }
 	        else return maxHeap.peek();
 	    }
-	};
+	}
 }

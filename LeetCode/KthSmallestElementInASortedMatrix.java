@@ -10,6 +10,7 @@ public class KthSmallestElementInASortedMatrix {
 		int[][] a = {a1, a2};
 		System.out.println(kthSmallest(a, 2));
 	}
+	//Method 1
 	public static int kthSmallestMid(int[][] matrix, int k) {
 		int n = matrix.length;
         int left = matrix[0][0];
@@ -35,6 +36,7 @@ public class KthSmallestElementInASortedMatrix {
 		return count;
 	}
 	
+	//Method 2
 	public static int kthSmallest(int[][] matrix, int k) {
 		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(k, Collections.reverseOrder());
 		for(int i = 0; i < matrix.length; i++) {
@@ -54,4 +56,24 @@ public class KthSmallestElementInASortedMatrix {
 		}
 		return pq.poll();
 	}
+	
+	//Method 3
+	public int kthSmallest3(final int[][] matrix, int k) {
+        int c = 0;
+        PriorityQueue<int[]> queue = new PriorityQueue<>(
+            k, (o1, o2) -> matrix[o1[0]][o1[1]] - matrix[o2[0]][o2[1]]);
+        queue.offer(new int[] {0, 0});
+        while (true) {
+            int[] pair = queue.poll();
+            if (++c == k) {
+                return matrix[pair[0]][pair[1]];
+            }
+            if (pair[0] == 0 && pair[1] + 1 < matrix[0].length) {
+                queue.offer(new int[] {0, pair[1] + 1});
+            }
+            if (pair[0] + 1 < matrix.length) {
+                queue.offer(new int[] {pair[0] + 1, pair[1]});
+            }
+        }
+    }
 }

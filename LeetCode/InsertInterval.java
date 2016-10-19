@@ -12,18 +12,10 @@ public class InsertInterval {
 	public static void main(String[] argv) {
 		Interval interval1 = new Interval(3,5);
 		Interval interval2 = new Interval(12,15);
-//		Interval interval3 = new Interval(6,8);
-//		Interval interval4 = new Interval(9,11);
-//		Interval interval3 = new Interval(6,7);
-//		Interval interval4 = new Interval(8,10);
-//		Interval interval5 = new Interval(12,16);
 		Interval newInterval = new Interval(6,6);
 		List<Interval> intervals = new ArrayList<Interval>();
 		intervals.add(interval1);
 		intervals.add(interval2);
-//		intervals.add(interval3);
-//		intervals.add(interval4);
-//		intervals.add(interval5);
 		List<Interval> result = insert(intervals, newInterval);
 		for(int i = 0; i < result.size(); i++) {
 			System.out.println(result.get(i).start + " " + result.get(i).end);
@@ -86,6 +78,17 @@ public class InsertInterval {
         }
         intervals.get(merge_start).start = newInterval.start;
         intervals.get(merge_start).end = newInterval.end;
+        return intervals;
+    }
+	
+	public List<Interval> insert2(List<Interval> intervals, Interval newInterval) {
+        int i = 0;
+        while(i < intervals.size() && intervals.get(i).end < newInterval.start) i++;
+        while(i < intervals.size() && intervals.get(i).start <= newInterval.end){
+            newInterval = new Interval(Math.min(intervals.get(i).start, newInterval.start), Math.max(intervals.get(i).end, newInterval.end));
+            intervals.remove(i);
+        }
+        intervals.add(i,newInterval);
         return intervals;
     }
 }
