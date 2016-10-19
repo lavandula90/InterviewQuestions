@@ -17,14 +17,14 @@ public class ClosestBinarySearchTreeValue {
 		System.out.println(closestValue(b, 4.428571));
 	}
 	public static int closestValue(TreeNode root, double target) {
-		TreeNode rst = root;
-        while(root != null) {
-        	if(Math.abs(root.val - target) < Math.abs(rst.val - target)) {
-        		rst = root;
-        	}
-        	if(root.val > target) root = root.left;
-        	else root = root.right;
-        }
-        return rst.val;
-    }
+        	TreeNode rst = root;
+       		while(root != null) {
+        		if(Math.abs(root.val - target) < Math.abs(rst.val - target)) {
+                    		rst = root;
+        	    	}
+        	   	if(root.val > target) root = root.left;
+        	    	else root = root.right;
+            	}
+            	return rst.val;
+    	}
 }
